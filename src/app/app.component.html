@@ -1,11 +1,23 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <button (click)="toggleListening()">
+<div class="container text-center mt-5">
+  <h1>Speech to Text</h1>
+  <button class="btn btn-primary mt-3" (click)="toggleListening()">
+    <i *ngIf="listening" class="fas fa-stop"></i>
+    <i *ngIf="!listening" class="fas fa-play"></i>
     {{ listening ? 'Stop Listening' : 'Start Listening' }}
   </button>
-  <p *ngIf="listening">Listening...</p>
-  <p *ngIf="!listening">Not Listening</p>
-  <p>Spoken Text: {{ spokenText }}</p>
-  <button (click)="updateText()">Update Text</button>
+  <p class="mt-3">
+    <i *ngIf="listening" class="fas fa-microphone"></i>
+    <i *ngIf="!listening" class="fas fa-microphone-slash"></i>
+    {{ listening ? 'Listening...' : 'Not Listening' }}
+  </p>
+  <div class="form-group mt-3">
+    <label class="mb-3" for="speech"><i class="fas fa-comment"></i> Spoken Text:</label>
+    <textarea class="form-control" name="speech" id="speech" cols="20" rows="10">{{ spokenText }}</textarea>
+  </div>
+  <button class="btn btn-secondary mt-3" (click)="updateText()">
+    <i class="fas fa-edit"></i> Update Text
+  </button>
 </div>
+
+
 <router-outlet></router-outlet>
